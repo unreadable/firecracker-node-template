@@ -1,0 +1,1 @@
+# firecracker-node-template
