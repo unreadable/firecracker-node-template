@@ -55,7 +55,7 @@ EOF
 echo "Installing vm dependencies"
 cat > /tmp/tmp/prepare.sh <<EOF
 passwd root -d root
-apk add -u openrc ca-certificates nodejs
+apk add -u openrc ca-certificates rng-tools nodejs
 exit 
 EOF
 

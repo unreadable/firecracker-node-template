@@ -2,6 +2,9 @@
 
 GATEWAY=172.20.0.1
 MAC_FILE=/sys/class/net/tap0/address
+SOCKET_PATH=/tmp/firecracker.socket
+
+rm -f $SOCKET_PATH
 
 if [ ! -f $MAC_FILE ]; then
     sudo ip tuntap add tap0 mode tap
@@ -21,7 +24,8 @@ MAC="$(cat $MAC_FILE)"
 sudo firectl \
     --kernel=/tmp/vmlinux.bin \
     --root-drive=rootfs \
-    --kernel-opts="console=ttyS0 noapic reboot=k panic=1 pci=off nomodules rw" \
+    --kernel-opts="console=ttyS0 random.trust_cpu=on noapic reboot=k panic=1 pci=off nomodules rw" \
     --tap-device=tap0/$MAC \
+    --socket-path=$SOCKET_PATH \
     --memory=1024 \
-    --ncpus=4
+    --ncpus=8
