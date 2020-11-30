@@ -10,7 +10,7 @@ ip link set eth0 up
 ip route add default via $GATEWAY dev eth0
 
 # Run user program
-/usr/bin/node /usr/src/function/index.js
+node /usr/src/function
 
 # Shutdown firecracker
 reboot

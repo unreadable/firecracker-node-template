@@ -26,7 +26,7 @@ mkcp conf/interfaces /tmp/overlay/etc/network
 mkcp conf/start.sh /tmp/overlay
 mkcp conf/resolv.conf /tmp/overlay/etc
 
-dd if=/dev/zero of=/tmp/rootfs bs=1M count=50
+dd if=/dev/zero of=/tmp/rootfs bs=1M count=128
 mkfs.ext4 /tmp/rootfs
 
 mkdir /tmp/tmp
@@ -55,7 +55,8 @@ EOF
 echo "Installing vm dependencies"
 cat > /tmp/tmp/prepare.sh <<EOF
 passwd root -d root
-apk add -u openrc ca-certificates rng-tools nodejs
+apk add -u openrc ca-certificates rng-tools nodejs npm
+npm i --prefix /usr/src/function
 exit 
 EOF
 

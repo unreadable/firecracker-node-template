@@ -27,5 +27,4 @@ sudo firectl \
     --kernel-opts="console=ttyS0 random.trust_cpu=on noapic reboot=k panic=1 pci=off nomodules rw" \
     --tap-device=tap0/$MAC \
     --socket-path=$SOCKET_PATH \
-    --memory=1024 \
     --ncpus=8
